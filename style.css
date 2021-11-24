@@ -3,3 +3,16 @@
   padding: 0;
   border: 0;
 }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  width: 256px;
+  height: 256px;
+}
+
+.etchPixel {
+  width: 64px;
+  height: 64px;
+}

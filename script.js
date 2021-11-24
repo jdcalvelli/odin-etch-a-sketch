@@ -4,7 +4,10 @@ const container = document.querySelector('.container')
 
 function createDivs(numDivs) {
   for (var i = 0; i < numDivs; i++) {
-    container.appendChild(document.createElement('div'));
+    let etchPixel = document.createElement('div');
+    etchPixel.classList.add('etchPixel');
+    etchPixel.textContent = `test ${i}`;
+    container.appendChild(etchPixel);
   }
 }
 

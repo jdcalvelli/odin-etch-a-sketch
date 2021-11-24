@@ -12,3 +12,12 @@ function createDivs(numDivs) {
 }
 
 createDivs(256)
+
+//create an event listener on mouse enter the div
+
+const etchPixelList = document.querySelectorAll('.etchPixel');
+etchPixelList.forEach((etchPixel) => {
+  etchPixel.addEventListener('mouseover', () => {
+    etchPixel.setAttribute('style', 'background-color: black');
+  });
+});

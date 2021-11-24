@@ -6,9 +6,9 @@ function createDivs(numDivs) {
   for (var i = 0; i < numDivs; i++) {
     let etchPixel = document.createElement('div');
     etchPixel.classList.add('etchPixel');
-    etchPixel.textContent = `test ${i}`;
+    //etchPixel.textContent = `test ${i}`;
     container.appendChild(etchPixel);
   }
 }
 
-createDivs(16)
+createDivs(256)

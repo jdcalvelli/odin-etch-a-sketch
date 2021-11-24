@@ -8,11 +8,11 @@
   display: flex;
   flex-wrap: wrap;
   border: 1px solid black;
-  width: 256px;
-  height: 256px;
+  width: 384px;
+  height: 384px;
 }
 
 .etchPixel {
-  width: 64px;
-  height: 64px;
+  width: 24px;
+  height: 24px;
 }

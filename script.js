@@ -21,3 +21,15 @@ etchPixelList.forEach((etchPixel) => {
     etchPixel.setAttribute('style', 'background-color: black');
   });
 });
+
+const resetButton = document.createElement('button');
+container.appendChild(resetButton);
+resetButton.textContent = 'Reset Board';
+
+function resetBoard() {
+  etchPixelList.forEach((etchPixel) => {
+    etchPixel.setAttribute('style', 'background-color: white');
+  })
+}
+
+resetButton.addEventListener('click', resetBoard);

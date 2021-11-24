@@ -16,3 +16,9 @@
   width: 24px;
   height: 24px;
 }
+
+button {
+  margin: 16px 0px;
+  padding: 8px;
+  border: 1px solid black;
+}

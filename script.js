@@ -1,35 +1,66 @@
-//create divs w javascript
+//VARIABLES
 
-const container = document.querySelector('.container')
+let numDivs;
+let numDivsPerSide;
+let divSideLength;
 
+const body = document.querySelector('body');
+
+const container = document.querySelector('.container');
+
+const resetButton = document.createElement('button');
+body.appendChild(resetButton);
+resetButton.textContent = 'Reset Board';
+
+let etchPixelList;
+
+//SETUP
+//set the default board size using default css in css file
+createDivs(256);
+
+//LOGIC
+
+resetButton.addEventListener('click', () => {
+  resetBoard();
+  setBoardSize();
+  createDivs(numDivs);
+});
+
+//HELPER FUNCTIONS
 function createDivs(numDivs) {
+  //actually make divs in dom
   for (var i = 0; i < numDivs; i++) {
     let etchPixel = document.createElement('div');
     etchPixel.classList.add('etchPixel');
     //etchPixel.textContent = `test ${i}`;
     container.appendChild(etchPixel);
   }
-}
-
-createDivs(256)
-
-//create an event listener on mouse enter the div
-
-const etchPixelList = document.querySelectorAll('.etchPixel');
-etchPixelList.forEach((etchPixel) => {
-  etchPixel.addEventListener('mouseover', () => {
-    etchPixel.setAttribute('style', 'background-color: black');
+  //set individual div height and width
+  etchPixelList = document.querySelectorAll('.etchPixel');
+  etchPixelList.forEach((etchPixel) => {
+    etchPixel.style.height = `${divSideLength}px`;
+    etchPixel.style.width = `${divSideLength}px`;
   });
-});
-
-const resetButton = document.createElement('button');
-container.appendChild(resetButton);
-resetButton.textContent = 'Reset Board';
+  //add mouseover event to each div
+  etchPixelList.forEach((etchPixel) => {
+    etchPixel.addEventListener('mouseover', () => {
+      etchPixel.style.backgroundColor = 'black';
+    });
+  });
+}
 
 function resetBoard() {
+  //remove old divs before new ones are created
   etchPixelList.forEach((etchPixel) => {
-    etchPixel.setAttribute('style', 'background-color: white');
-  })
+    container.removeChild(etchPixel);
+  });
 }
 
-resetButton.addEventListener('click', resetBoard);
+function setBoardSize() {
+  //prompt player for num divs per side
+  numDivsPerSide = window.prompt('how many squares wide do you want one side to be?');
+  //figure out total number of divs
+  numDivs = Math.pow(numDivsPerSide, 2);
+  //figure out height/width of an individual div
+  divSideLength = 384 / numDivsPerSide;
+}

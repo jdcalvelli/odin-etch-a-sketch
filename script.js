@@ -16,6 +16,10 @@ const pixelColorToggle = document.createElement('button');
 body.appendChild(pixelColorToggle);
 pixelColorToggle.textContent = 'black and white pen';
 
+const darkenPixelButton = document.createElement('button');
+body.appendChild(darkenPixelButton);
+darkenPixelButton.textContent = 'darken pixels over time'
+
 let etchPixelList;
 
 let rainbow;
@@ -41,7 +45,11 @@ pixelColorToggle.addEventListener('click', () => {
     rainbow = true;
     pixelColorToggle.textContent = 'rainbow pen';
   }
-})
+});
+
+darkenPixelButton.addEventListener('click', () => {
+
+});
 
 //HELPER FUNCTIONS
 function createDivs(numDivs) {
@@ -63,9 +71,9 @@ function createDivs(numDivs) {
     etchPixel.addEventListener('mouseover', () => {
       if (rainbow) {
         etchPixel.style.backgroundColor =
-        `rgb(${getRandomIntInclusive(0,255)},
-        ${getRandomIntInclusive(0,255)},
-        ${getRandomIntInclusive(0,255)})`;
+        `hsl(${getRandomIntInclusive(0,360)},
+        ${getRandomIntInclusive(0,100)}%,
+        ${getRandomIntInclusive(0,100)}%)`;
       }
       else {
         etchPixel.style.backgroundColor = 'black';

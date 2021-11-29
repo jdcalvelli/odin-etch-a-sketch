@@ -58,7 +58,14 @@ function resetBoard() {
 
 function setBoardSize() {
   //prompt player for num divs per side
-  numDivsPerSide = window.prompt('how many squares wide do you want one side to be?');
+  //check to make sure numDivsPerSide is below 100
+  let promptResponse = window.prompt('how many squares wide do you want one side to be?');
+  if (promptResponse >= 100) {
+    alert('number was too large, press the reset button again to set a board size');
+  }
+  else {
+    numDivsPerSide = promptResponse;
+  }
   //figure out total number of divs
   numDivs = Math.pow(numDivsPerSide, 2);
   //figure out height/width of an individual div

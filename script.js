@@ -12,7 +12,13 @@ const resetButton = document.createElement('button');
 body.appendChild(resetButton);
 resetButton.textContent = 'Reset Board';
 
+const pixelColorToggle = document.createElement('button');
+body.appendChild(pixelColorToggle);
+pixelColorToggle.textContent = 'black and white pen';
+
 let etchPixelList;
+
+let rainbow;
 
 //SETUP
 //set the default board size using default css in css file
@@ -25,6 +31,17 @@ resetButton.addEventListener('click', () => {
   setBoardSize();
   createDivs(numDivs);
 });
+
+pixelColorToggle.addEventListener('click', () => {
+  if (rainbow) {
+    rainbow = false;
+    pixelColorToggle.textContent = 'black and white pen';
+  }
+  else {
+    rainbow = true;
+    pixelColorToggle.textContent = 'rainbow pen';
+  }
+})
 
 //HELPER FUNCTIONS
 function createDivs(numDivs) {
@@ -44,7 +61,15 @@ function createDivs(numDivs) {
   //add mouseover event to each div
   etchPixelList.forEach((etchPixel) => {
     etchPixel.addEventListener('mouseover', () => {
-      etchPixel.style.backgroundColor = 'black';
+      if (rainbow) {
+        etchPixel.style.backgroundColor =
+        `rgb(${getRandomIntInclusive(0,255)},
+        ${getRandomIntInclusive(0,255)},
+        ${getRandomIntInclusive(0,255)})`;
+      }
+      else {
+        etchPixel.style.backgroundColor = 'black';
+      }
     });
   });
 }
@@ -70,4 +95,11 @@ function setBoardSize() {
   numDivs = Math.pow(numDivsPerSide, 2);
   //figure out height/width of an individual div
   divSideLength = 384 / numDivsPerSide;
+}
+
+//found on MDN Web Docs, to be used for the rainbow option
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }

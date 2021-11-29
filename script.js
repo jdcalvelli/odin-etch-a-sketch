@@ -22,7 +22,10 @@ darkenPixelButton.textContent = 'darken pixels over time'
 
 let etchPixelList;
 
-let rainbow;
+let rainbow = false;
+let darken = false;
+
+let darkeningBrightness = getRandomIntInclusive(0, 100);
 
 //SETUP
 //set the default board size using default css in css file
@@ -48,7 +51,15 @@ pixelColorToggle.addEventListener('click', () => {
 });
 
 darkenPixelButton.addEventListener('click', () => {
-
+  if (darken) {
+    darken = false;
+    darkenPixelButton.textContent = 'darken pixels over time';
+    darkeningBrightness = getRandomIntInclusive(0, 360);
+  }
+  else {
+    darken = true;
+    darkenPixelButton.textContent = 'revert darkening';
+  }
 });
 
 //HELPER FUNCTIONS
@@ -69,11 +80,22 @@ function createDivs(numDivs) {
   //add mouseover event to each div
   etchPixelList.forEach((etchPixel) => {
     etchPixel.addEventListener('mouseover', () => {
-      if (rainbow) {
+      if (darken) {
+        darkeningBrightness = darkeningBrightness - 10;
+      }
+      console.log(darkeningBrightness);
+
+      if (rainbow == true && darken == false) {
         etchPixel.style.backgroundColor =
         `hsl(${getRandomIntInclusive(0,360)},
         ${getRandomIntInclusive(0,100)}%,
         ${getRandomIntInclusive(0,100)}%)`;
+      }
+      else if (rainbow == true && darken == true) {
+        etchPixel.style.backgroundColor =
+        `hsl(${getRandomIntInclusive(0,360)},
+        ${getRandomIntInclusive(0,100)}%,
+        ${darkeningBrightness}%)`;
       }
       else {
         etchPixel.style.backgroundColor = 'black';
